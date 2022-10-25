@@ -32,28 +32,21 @@ App::App() {
 }
 
 App::~App() {
+	Shell_NotifyIcon(NIM_DELETE, &this->nid);
 	glfwTerminate();
 }
 
 void App::mainLoop() {
 
-	int waitTime = 5000;
+	int val = 0;
+	std::wstring V = L"";
 
 	while (this->running) {
-
-		Sleep(waitTime);
-
-		Shell_NotifyIcon(NIM_DELETE, &nid);
-
-		int val = this->getRefreshRate();
-
-		std::wstring V = std::to_wstring(val);
-
+		Sleep(5000);
+		val = this->getRefreshRate();
+		V = std::to_wstring(val);
 		memcpy(this->nid.szTip, V.c_str(), 128);
-
-		Shell_NotifyIcon(NIM_ADD, &this->nid);
-
-		std::cout << val << std::endl;
+		Shell_NotifyIcon(NIM_MODIFY, &this->nid);
 	}
 
 }
