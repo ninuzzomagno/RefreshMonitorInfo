@@ -62,6 +62,5 @@ int App::getRefreshRate() {
 	int count = 0;
 	GLFWmonitor** monitor = glfwGetMonitors(&count);
 	GLFWvidmode *videomode = const_cast<GLFWvidmode*>(glfwGetVideoMode(monitor[0]));
-	int rf = videomode->refreshRate;
-	return rf;
+	return videomode->refreshRate;
 }
