@@ -13,11 +13,8 @@ App::App() {
 
 	this->nid = {};
 
-	HWND h = GetConsoleWindow();
-	ShowWindow(h, SW_HIDE);
-
 	nid.cbSize = sizeof(nid);
-	nid.hWnd = h;
+	nid.hWnd = GetDesktopWindow();
 	nid.uFlags = NIF_ICON | NIF_TIP;
 	nid.hIcon = (HICON)LoadImage(NULL, L"icon.ico", IMAGE_ICON, 0, 0, LR_LOADFROMFILE | LR_SHARED);
 
@@ -28,7 +25,7 @@ App::App() {
 	memcpy(this->nid.szTip, V.c_str(), 128);
 
 	Shell_NotifyIcon(NIM_ADD, &nid);
-	
+
 }
 
 App::~App() {
